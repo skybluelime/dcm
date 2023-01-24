@@ -1,0 +1,65 @@
+[
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "OutputConverter",
+        "kind": 6,
+        "importPath": "dcm.dataset.base",
+        "description": "dcm.dataset.base",
+        "peekOfCode": "class OutputConverter:\n    def __init__(self, data):\n        self._data = data\n    def to_list(self): ...",
+        "detail": "dcm.dataset.base",
+        "documentation": {}
+    },
+    {
+        "label": "file_to_move_trg_path",
+        "kind": 2,
+        "importPath": "work_test",
+        "description": "work_test",
+        "peekOfCode": "def file_to_move_trg_path(trg_path, fpath):\n    for x in os.listdir(fpath):\n        trg_file = os.path.join(fpath, x)\n        if os.path.isfile(trg_file):\n            yield trg_file\n        elif os.path.isdir(trg_file):\n            yield from file_to_move_trg_path(trg_path, trg_file)\n        else:\n            return\nfor x in list(file_to_move_trg_path(target_path, folder_path)):",
+        "detail": "work_test",
+        "documentation": {}
+    },
+    {
+        "label": "folder_path",
+        "kind": 5,
+        "importPath": "work_test",
+        "description": "work_test",
+        "peekOfCode": "folder_path = r\"I:\\부엉이\\독수리\"\nfolder_list = os.listdir(folder_path)\ntarget_path = r\"I:\\부엉이\"\ndef file_to_move_trg_path(trg_path, fpath):\n    for x in os.listdir(fpath):\n        trg_file = os.path.join(fpath, x)\n        if os.path.isfile(trg_file):\n            yield trg_file\n        elif os.path.isdir(trg_file):\n            yield from file_to_move_trg_path(trg_path, trg_file)",
+        "detail": "work_test",
+        "documentation": {}
+    },
+    {
+        "label": "folder_list",
+        "kind": 5,
+        "importPath": "work_test",
+        "description": "work_test",
+        "peekOfCode": "folder_list = os.listdir(folder_path)\ntarget_path = r\"I:\\부엉이\"\ndef file_to_move_trg_path(trg_path, fpath):\n    for x in os.listdir(fpath):\n        trg_file = os.path.join(fpath, x)\n        if os.path.isfile(trg_file):\n            yield trg_file\n        elif os.path.isdir(trg_file):\n            yield from file_to_move_trg_path(trg_path, trg_file)\n        else:",
+        "detail": "work_test",
+        "documentation": {}
+    },
+    {
+        "label": "target_path",
+        "kind": 5,
+        "importPath": "work_test",
+        "description": "work_test",
+        "peekOfCode": "target_path = r\"I:\\부엉이\"\ndef file_to_move_trg_path(trg_path, fpath):\n    for x in os.listdir(fpath):\n        trg_file = os.path.join(fpath, x)\n        if os.path.isfile(trg_file):\n            yield trg_file\n        elif os.path.isdir(trg_file):\n            yield from file_to_move_trg_path(trg_path, trg_file)\n        else:\n            return",
+        "detail": "work_test",
+        "documentation": {}
+    }
+]
