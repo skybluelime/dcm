@@ -1,0 +1,47 @@
+[
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "folder_path",
+        "kind": 5,
+        "importPath": "work_test",
+        "description": "work_test",
+        "peekOfCode": "folder_path = r\"G:\\분류\\SSNI\"\nfolder_list = os.listdir(folder_path)\nfpath = r\"I:\\분류\\SSNI\"\nfpath\nfor fold in folder_list:\n    for fname in os.listdir(fpath):\n        if fold.upper() in fname.upper():\n            print(fname)\n            trg_folder = os.path.join(folder_path, fold)\n            src_file = os.path.join(fpath, fname)",
+        "detail": "work_test",
+        "documentation": {}
+    },
+    {
+        "label": "folder_list",
+        "kind": 5,
+        "importPath": "work_test",
+        "description": "work_test",
+        "peekOfCode": "folder_list = os.listdir(folder_path)\nfpath = r\"I:\\분류\\SSNI\"\nfpath\nfor fold in folder_list:\n    for fname in os.listdir(fpath):\n        if fold.upper() in fname.upper():\n            print(fname)\n            trg_folder = os.path.join(folder_path, fold)\n            src_file = os.path.join(fpath, fname)\n            shutil.move(src_file, trg_folder)",
+        "detail": "work_test",
+        "documentation": {}
+    },
+    {
+        "label": "fpath",
+        "kind": 5,
+        "importPath": "work_test",
+        "description": "work_test",
+        "peekOfCode": "fpath = r\"I:\\분류\\SSNI\"\nfpath\nfor fold in folder_list:\n    for fname in os.listdir(fpath):\n        if fold.upper() in fname.upper():\n            print(fname)\n            trg_folder = os.path.join(folder_path, fold)\n            src_file = os.path.join(fpath, fname)\n            shutil.move(src_file, trg_folder)\nfor fname in folder_list:",
+        "detail": "work_test",
+        "documentation": {}
+    }
+]
