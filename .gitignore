@@ -129,9 +129,5 @@ dmypy.json
 .pyre/
 
 .idea/
-<<<<<<< HEAD
-.vscode/
-=======
 .vscode/
 work_test.py
->>>>>>> doit
