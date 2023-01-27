@@ -24,4 +24,3 @@ class BaseEventStatus(QObject):
 class BaseWidget(QWidget):
     def __init__(self, parent=None, **kwargs):
         super(BaseWidget, self).__init__(parent=None)
-        
