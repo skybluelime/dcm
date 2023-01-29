@@ -1,4 +1,5 @@
 from enum import Enum
+from collections import deque
 from dataclasses import dataclass
 import pandas as pd
 from PyQt5.QtCore import Qt
@@ -64,8 +65,8 @@ class History:
 
 
 class HistoryStack:
-    _histories: []
-    _current_index: int
+    _undo_stack: deque
+    _redo_stack: deque
 
     """
     History Object를 보관 관리
@@ -76,28 +77,67 @@ class HistoryStack:
         @TODO parent 오브젝트가 해제 되었을 시 HistoryStack Object 해제 되는지 확인 필요
         #@고민 히스토리를 decorator로 제공해야 할지? instance 생성 방식으로 해야 할지?
 
+        def add_to_history(func):
+            @wraps(func)
+            def wrapper(self, *args, **kw):
+                self.history.append(func.__name__)
+                return func(self, *args, **kw)
+            return wrapper
+
+        class MyClass(object):
+            def __init__(self):
+                self.history = []
+
+            @add_to_history
+            def methodA(self):
+                return "method A"
+
+            @add_to_history
+            def methodB(self, input):
+                return "method B %s" % input
+
+            def methodC(self):
+                return "methodC"
+
+
+
+        inst = MyClass()
+        print(inst.history)
+
+        inst.methodA()
+        print(inst.history)
+
+        inst.methodB("myinput")
+        print(inst.history)
+
+        inst.methodC()
+        print(inst.history)
+
         @param history:
         @return:
         """
-        self._current_index = 0
-
-    def remove_history(self, index): ...
+        # self._current_index = 0
 
     def append_history(self, history: History):
-        history_count = len(self._histories)
+        history_count = len(self._undo_stack)
 
-        # undo 이벤트로 history_index가 이전으로 이동했을 시 이후 인덱스 제거를 위한 체크
-        if self._current_index < history_count:
-            if self._current_index > 0:
-                self._histories = self._histories[:self._current_index]
-            else:
-                self._histories = []
+        # redo deque에 저장된 데이터가 있으면 redo 초기화 하고 다시 쌓는다.
+        if len(self._redo_stack) > 0:
+            self._redo_stack.clear()
 
-        self._current_index += 1
-        self._histories.append(history)
+        self._undo_stack.append(history)
 
-    def redo(self): ...
-    def undo(self): ...
+    def redo(self):
+        if len(self._redo_stack) > 0:
+            redo_item = self._undo_stack.pop()
+            self._undo_stack.append(redo_item)
+        return redo_item
+
+    def undo(self):
+        if len(self._undo_stack) > 0:
+            undo_item = self._undo_stack.pop()
+            self._redo_stack.append(undo_item)
+        return undo_item
 
 
 class BaseDataControlDataObject:
