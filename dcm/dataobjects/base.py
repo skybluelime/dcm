@@ -26,7 +26,7 @@ class FilterStack:
     def __init__(self):
         pass
 
-    def add_filter(self, filter_obj: Filter): ...
+    def append_filter(self, filter_obj: Filter): ...
     def remove_filter(self, filter_obj: Filter): ...
 
     def reset_filter(self):
@@ -75,6 +75,7 @@ class HistoryStack:
     def add_history(self, history: History):
         """
         @TODO parent 오브젝트가 해제 되었을 시 HistoryStack Object 해제 되는지 확인 필요
+        @TODO redo, undo 이벤트 발생시 History() 생성하는 로직 구현
         #@고민 히스토리를 decorator로 제공해야 할지? instance 생성 방식으로 해야 할지?
 
         def add_to_history(func):
@@ -116,7 +117,6 @@ class HistoryStack:
         @param history:
         @return:
         """
-        # self._current_index = 0
 
     def append_history(self, history: History):
         history_count = len(self._undo_stack)
